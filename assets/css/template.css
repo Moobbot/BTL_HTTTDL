@@ -1,0 +1,151 @@
+/**================ Alter of Template ================*/
+/**================ Font face ================*/
+
+@font-face {
+	font-family: 'Inter';
+	src: url('../fonts/Inter/Inter-Black.woff2') format('woff2'),
+		url('../fonts/Inter/Inter-Black.woff') format('woff');
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Inter';
+	src: url('../fonts/Inter/Inter-ExtraBold.woff2') format('woff2'),
+		url('../fonts/Inter/Inter-ExtraBold.woff') format('woff');
+	font-weight: 800;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Inter';
+	src: url('../fonts/Inter/Inter-Bold.woff2') format('woff2'),
+		url('../fonts/Inter/Inter-Bold.woff') format('woff');
+	font-weight: 700;
+	/* font-weight: bold; */
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Inter';
+	src: url('../fonts/Inter/Inter-SemiBold.woff2') format('woff2'),
+		url('../fonts/Inter/Inter-SemiBold.woff') format('woff');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Inter';
+	src: url('../fonts/Inter/Inter-Medium.woff2') format('woff2'),
+		url('../fonts/Inter/Inter-Medium.woff') format('woff');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Inter';
+	src: url('../fonts/Inter/Inter-Regular.woff2') format('woff2'),
+		url('../fonts/Inter/Inter-Regular.woff') format('woff');
+	/* font-weight: normal; */
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Inter';
+	src: url('../fonts/Inter/Inter-Light.woff2') format('woff2'),
+		url('../fonts/Inter/Inter-Light.woff') format('woff');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Inter';
+	src: url('../fonts/Inter/Inter-ExtraLight.woff2') format('woff2'),
+		url('../fonts/Inter/Inter-ExtraLight.woff') format('woff');
+	font-weight: 200;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Inter';
+	src: url('../fonts/Inter/Inter-Thin.woff2') format('woff2'),
+		url('../fonts/Inter/Inter-Thin.woff') format('woff');
+	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
+}
+/**-----      Roboto      -----*/
+@font-face {
+	font-family: 'Roboto';
+	src: url('../fonts/Roboto/Roboto-Black.woff2') format('woff2'),
+		url('../fonts/Roboto/Roboto-Black.woff') format('woff');
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: url('../fonts/Roboto/Roboto-Bold.woff2') format('woff2'),
+		url('../fonts/Roboto/Roboto-Bold.woff') format('woff');
+	font-weight: 700;
+	/* font-weight: bold; */
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: url('../fonts/Roboto/Roboto-Medium.woff2') format('woff2'),
+		url('../fonts/Roboto/Roboto-Medium.woff') format('woff');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: url('../fonts/Roboto/Roboto-Regular.woff2') format('woff2'),
+		url('../fonts/Roboto/Roboto-Regular.woff') format('woff');
+	/* font-weight: normal; */
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: url('../fonts/Roboto/Roboto-Light.woff2') format('woff2'),
+		url('../fonts/Roboto/Roboto-Light.woff') format('woff');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: url('../fonts/Roboto/Roboto-Thin.woff2') format('woff2'),
+		url('../fonts/Roboto/Roboto-Thin.woff') format('woff');
+	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
+}
+
+:root {
+	--primary-color: #084a77;
+	/** gần giống màu chính */
+	--primary-variant: #dbecf8;
+	/** Màu dùng nhiều thứ 2 */
+	--secondary-color-1: #f8f8f8;
+	--secondary-color-2: #f4ede7;
+	--red: #d81010;
+	--orange: #f59c3f;
+	--e-gray-1: #f2f2f0;
+	--e-gray-2: #d9d9d9;
+}
