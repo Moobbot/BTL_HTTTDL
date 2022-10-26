@@ -3,10 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bài tập lớn nhóm 3</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="assets/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css" />
+    <script src="https://openlayers.org/en/v4.6.5/build/ol.js" type="text/javascript"></script>
     <link rel="stylesheet" href="assets/css/alter.css">
     <link rel="stylesheet" href="assets/css/template.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -48,6 +49,14 @@
                             <div class="search-map-right col-lg-4">
                                 <div class="search-map-right-inner">
                                     <div class="option-wrap">
+                                        <div class="righ-panel">
+                                            <input type="text" id="txtPoint1" />
+                                            <br />
+                                            <input type="text" id="txtPoint2" />
+                                            <br />
+                                            <button id="btnSolve">Tìm đường</button>
+                                            <button id="btnReset">Xóa đường</button>
+                                        </div>
                                         <form action="/action_page.php" class="search-form">
                                             <div class="form-group">
                                                 <label for="cars">Chọn trường đại học muốn đến:</label>
@@ -90,9 +99,6 @@
             </div>
         </div>
     </div>
-    <footer id="footer" class="footer">
-
-    </footer>
 </body>
 <script src="assets/js/jquery-3.6.1.js"></script>
 <script src="assets/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
