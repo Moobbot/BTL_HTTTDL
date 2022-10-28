@@ -1,4 +1,4 @@
-var road_split, result;
+var dongda_street, result;
 $('#document').ready(function () {
 	var format = 'image/png';
 	var map;
@@ -12,21 +12,26 @@ $('#document').ready(function () {
 	var cenY = (minY + maxY) / 2;
 	var mapLat = cenY;
 	var mapLng = cenX;
-	var mapDefaultZoom = 6;
+	var mapDefaultZoom = 7;
 	//Điểm bắt đầu
 	var startPoint = new ol.Feature();
 	//Điểm kết thúc
 	var destPoint = new ol.Feature();
 	// Vùng bao
 	var bounds = [minX, minY, maxX, maxY];
-	road_split = new ol.layer.Image({
+
+	layerBG = new ol.layer.Tile({
+		source: new ol.source.OSM({}),
+	});
+
+	dongda_street = new ol.layer.Image({
 		source: new ol.source.ImageWMS({
-			url: 'http://localhost:8080/geoserver/geoserver_demo/wms',
+			url: 'http://localhost:8080/geoserver/btl/wms',
 			params: {
 				FORMAT: format,
 				VERSION: '1.1.1',
 				STYLES: '',
-				LAYERS: 'road_split',
+				LAYERS: 'dongda_street',
 			},
 		}),
 	});
@@ -37,13 +42,16 @@ $('#document').ready(function () {
 	});
 	var view = new ol.View({
 		projection: projection,
+		center: ol.proj.fromLonLat([mapLng, mapLat]),
+		zoom: mapDefaultZoom,
 	});
 	map = new ol.Map({
 		target: 'map',
-		layers: [road_split],
+		layers: [layerBG, dongda_street],
 		view: view,
 	});
-	//map.getView().fitExtent(bounds, map.getSize());
+
+	// map.getView().fitExtent(bounds, map.getSize());
 	map.getView().fit(bounds, map.getSize());
 	var vectorLayer = new ol.layer.Vector({
 		source: new ol.source.Vector({
@@ -66,22 +74,24 @@ $('#document').ready(function () {
 		var startCoord = startPoint.getGeometry().getCoordinates();
 		var destCoord = destPoint.getGeometry().getCoordinates();
 		var params = {
-			LAYERS: 'route',
+			LAYERS: 'route2',
 			FORMAT: 'image/png',
 		};
 		var viewparams = [
 			'x1:' + startCoord[0],
 			'y1:' + startCoord[1],
-			+'x2:' + destCoord[0],
+			'x2:' + destCoord[0],
 			'y2:' + destCoord[1],
 		];
 		params.viewparams = viewparams.join(';');
+
 		result = new ol.layer.Image({
 			source: new ol.source.ImageWMS({
-				url: 'http://localhost:8080/geoserver/geoserver_demo/wms',
+				url: 'http://localhost:8080/geoserver/btl/wms',
 				params: params,
 			}),
 		});
+
 		map.addLayer(result);
 	});
 	$('#btnReset').click(function () {

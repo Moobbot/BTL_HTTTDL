@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="assets/bootstrap-3.3.7-dist/css/bootstrap.css">
     <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css" />
     <script src="https://openlayers.org/en/v4.6.5/build/ol.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="assets/css/alter.css">
     <link rel="stylesheet" href="assets/css/template.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -20,8 +21,7 @@
                 <nav class="navbar">
                     <div class="container-fluid">
                         <div class="navbar-header">
-                            <a class="navbar-brand" href="#"><img src="assets/img/logo.png" alt=""
-                                    class="img-fluid"></a>
+                            <a class="navbar-brand" href="#"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
                         </div>
                         <ul class="nav navbar-nav">
                             <li><a href="#search-map">Tìm đường</a></li>
@@ -64,7 +64,7 @@
                                                     <option value="TLU">Đại học Thủy Lợi</option>
                                                     <option value="LDA">Đại học Công Đoàn</option>
                                                     <option value="VWA">Học viện Phụ nữ Việt Nam</option>
-                                                    <option value="FBU">Đại học Ngân Hàng</option>
+                                                    <option value="FBU">Học viện Ngân Hàng</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
