@@ -64,16 +64,21 @@ $('#document').ready(function () {
 		if (startPoint.getGeometry() == null) {
 			// First click.
 			startPoint.setGeometry(new ol.geom.Point(evt.coordinate));
-			$('#txtPoint1').val(evt.coordinate);
-		} else if (destPoint.getGeometry() == null) {
-			// Second click.
-			destPoint.setGeometry(new ol.geom.Point(evt.coordinate));
-			$('#txtPoint2').val(evt.coordinate);
+			// $('#txtPoint1').val(evt.coordinate);
 		}
+		//  else if (destPoint.getGeometry() == null) {
+		// 	// Second click.
+		// 	destPoint.setGeometry(new ol.geom.Point(evt.coordinate));
+		// 	$('#txtPoint2').val(evt.coordinate);
+		// }
 	});
 	$('#btnSolve').click(function () {
 		var startCoord = startPoint.getGeometry().getCoordinates();
-		var destCoord = destPoint.getGeometry().getCoordinates();
+		// var destCoord = destPoint.getGeometry().getCoordinates();
+		// get input val -> dest[0] & dest[1]
+		var dest = $('#uni').val().split(' ');
+		// alert(dest[0]);
+
 		var params = {
 			LAYERS: 'route',
 			FORMAT: 'image/png',
@@ -81,8 +86,8 @@ $('#document').ready(function () {
 		var viewparams = [
 			'x1:' + startCoord[0],
 			'y1:' + startCoord[1],
-			'x2:' + destCoord[0],
-			'y2:' + destCoord[1],
+			'x2:' + dest[0],
+			'y2:' + dest[1],
 		];
 		params.viewparams = viewparams.join(';');
 
