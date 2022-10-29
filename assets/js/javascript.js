@@ -82,6 +82,7 @@ $('#document').ready(function () {
 		var params = {
 			LAYERS: 'route',
 			FORMAT: 'image/png',
+			STYLES: 'custom',
 		};
 		var viewparams = [
 			'x1:' + startCoord[0],
