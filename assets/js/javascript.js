@@ -35,6 +35,32 @@ $('#document').ready(function () {
 			},
 		}),
 	});
+
+	var dongda_univercity = new ol.layer.Image({
+		source: new ol.source.ImageWMS({
+			url: 'http://localhost:8080/geoserver/btl/wms',
+			params: {
+				FORMAT: format,
+				VERSION: '1.1.1',
+				STYLES: 'custom_polygon',
+				LAYERS: 'dongda_univercity',
+			},
+		}),
+	});
+
+	var name = new ol.layer.Image({
+		source: new ol.source.ImageWMS({
+			url: 'http://localhost:8080/geoserver/btl/wms',
+			params: {
+				FORMAT: format,
+				VERSION: '1.1.1',
+				STYLES: 'name',
+				LAYERS: 'dongda_univercity',
+				label: '${name}',
+			},
+		}),
+	});
+
 	var projection = new ol.proj.Projection({
 		code: 'EPSG:4326',
 		units: 'degrees',
@@ -48,7 +74,7 @@ $('#document').ready(function () {
 	});
 	map = new ol.Map({
 		target: 'map',
-		layers: [layerBG, road_split],
+		layers: [layerBG, road_split, dongda_univercity, name],
 		view: view,
 	});
 
