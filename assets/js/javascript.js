@@ -1,18 +1,18 @@
-var dongda_street, result;
+var road_split, result;
 $('#document').ready(function () {
 	var format = 'image/png';
 	var map;
 	// Giới hạn khu vực
-	var minX = 105.671539306641;
-	var minY = 20.8914451599121;
-	var maxX = 105.982925415039;
-	var maxY = 21.186128616333;
+	var minX = 105.79759979248;
+	var minY = 20.9971103668213;
+	var maxX = 105.842880249023;
+	var maxY = 21.032262802124;
 	// Căn hình giữa màn
 	var cenX = (minX + maxX) / 2;
 	var cenY = (minY + maxY) / 2;
 	var mapLat = cenY;
 	var mapLng = cenX;
-	var mapDefaultZoom = 7;
+	// var mapDefaultZoom = 14.5;
 	//Điểm bắt đầu
 	var startPoint = new ol.Feature();
 	//Điểm kết thúc
@@ -24,14 +24,14 @@ $('#document').ready(function () {
 		source: new ol.source.OSM({}),
 	});
 
-	dongda_street = new ol.layer.Image({
+	road_split = new ol.layer.Image({
 		source: new ol.source.ImageWMS({
 			url: 'http://localhost:8080/geoserver/btl/wms',
 			params: {
 				FORMAT: format,
 				VERSION: '1.1.1',
-				STYLES: '',
-				LAYERS: 'dongda_street',
+				STYLES: 'simple_roads',
+				LAYERS: 'road_split',
 			},
 		}),
 	});
@@ -41,13 +41,14 @@ $('#document').ready(function () {
 		axisOrientation: 'neu',
 	});
 	var view = new ol.View({
-		projection: projection,
 		center: ol.proj.fromLonLat([mapLng, mapLat]),
-		zoom: mapDefaultZoom,
+		// zoom: mapDefaultZoom,
+		minZoom: 14,
+		projection: projection,
 	});
 	map = new ol.Map({
 		target: 'map',
-		layers: [layerBG, dongda_street],
+		layers: [layerBG, road_split],
 		view: view,
 	});
 
@@ -74,7 +75,7 @@ $('#document').ready(function () {
 		var startCoord = startPoint.getGeometry().getCoordinates();
 		var destCoord = destPoint.getGeometry().getCoordinates();
 		var params = {
-			LAYERS: 'route2',
+			LAYERS: 'route',
 			FORMAT: 'image/png',
 		};
 		var viewparams = [
