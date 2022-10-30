@@ -15,14 +15,14 @@
 </head>
 
 <body>
-
     <header id="header" class="header">
         <div class="header-container container">
             <div class="header-inner">
                 <nav class="navbar">
                     <div class="container-fluid">
                         <div class="navbar-header">
-                            <a class="navbar-brand" href="#"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
+                            <a class="navbar-brand" href="#"><img src="assets/img/logo.png" alt=""
+                                    class="img-fluid"></a>
                         </div>
                         <ul class="nav navbar-nav">
                             <li><a href="#search-map">Tìm đường</a></li>
@@ -57,24 +57,10 @@
                                         <div class="option-wrap">
                                             <div class="option-inner">
                                                 <label for="uni">Chọn trường đại học muốn đến:</label>
-                                                <select name="uni" id="uni">
-                                                    <?php
-                                                    // connect to postgresql
-                                                    include('index_db.php');
-                                                    while ($row = pg_fetch_assoc($result)) {
-                                                        //tên trường
-                                                        $name = $row['name'];
-                                                        //Tọa độ
-                                                        $coordinates = $row['st_astext'];
-                                                        $coordinates = trim($coordinates, "MULTIPOINT()");
-                                                    ?>
-                                                        <option value="<?= $coordinates; ?>"><?= $name; ?>
-                                                        </option>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </select>
-
+                                                <?php
+                                                // connect to postgresql
+                                                include('index_db.php');
+                                                ?>
                                             </div>
                                         </div>
                                     </div>

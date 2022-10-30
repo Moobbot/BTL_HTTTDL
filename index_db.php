@@ -8,21 +8,21 @@ $options = [
 $host = 'localhost';
 $db = 'btl';
 $user = 'postgres';
-$password = '181311';
+$password = '123456';
 $post = '5432';
 
 // connect to a database 
-$dbConn = pg_connect("host=$host port=$post dbname=$db user=$user password=$password");
-if (!$dbConn) {
-    echo "An error occurred.\n";
-    exit;
-}
+// $dbConn = pg_connect("host=$host port=$post dbname=$db user=$user password=$password");
+// if (!$dbConn) {
+//     echo "An error occurred.\n"; 
+//     exit;
+// }
 // Query data
-$result = pg_query($dbConn, "SELECT name, ST_AsText(p.geom) FROM dongda_univercity_point AS p JOIN dongda_univercity AS u ON u.osm_id = p.osm_id");
-if (!$result) {
-    echo "An error occurred.\n";
-    exit;
-}
+// $result = pg_query($dbConn, "SELECT name, ST_AsText(p.geom) FROM dongda_univercity_point AS p JOIN dongda_univercity AS u ON u.osm_id = p.osm_id");
+// if (!$result) {
+//     echo "An error occurred.\n";
+//     exit;
+// }
 
 // Show value
 // while ($row = pg_fetch_assoc($result)) {
@@ -38,3 +38,38 @@ if (!$result) {
 //     print_r($toado);
 //     echo "</pre>";
 // }
+// $resFin =  '<select name="uni" id="uni">';
+// while ($row = pg_fetch_assoc($result)) {
+//     //tên trường
+//     $name = $row['name'];
+//     //Tọa độ
+//     $coordinates = $row['st_astext'];
+//     $coordinates = trim($coordinates, "MULTIPOINT()");
+//     $resFin = $resFin . '<option value="' . $coordinates . '">' . $name . '</option>';
+// }
+// $resFin = $resFin . '</select>';
+// echo $resFin;
+
+//* ---- C2 dùng PDO
+// Query string
+$dsn = "pgsql:host=$host; port=$post; dbname=$db";
+try {
+    // Create pdo connection
+    $myPdo = new PDO($dsn, $user, $password);
+} catch (\PDOException $e) {
+    throw new \PDOException($e->getMessage(), (int)$e->getCode());
+}
+// Query
+$result = $myPdo->query("SELECT name, ST_AsText(p.geom) FROM dongda_univercity_point AS p JOIN dongda_univercity AS u ON u.osm_id = p.osm_id");
+// Loop query
+$resFin =  '<select name="uni" id="uni">';
+foreach ($result as $key => $row) {
+    //tên trường
+    $name = $row['name'];
+    //Tọa độ
+    $coordinates = $row['st_astext'];
+    $coordinates = trim($coordinates, "MULTIPOINT()");
+    $resFin = $resFin . '<option value="' . $coordinates . '">' . $name . '</option>';
+}
+$resFin = $resFin . '</select>';
+echo $resFin;
