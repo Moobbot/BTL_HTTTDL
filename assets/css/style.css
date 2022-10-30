@@ -59,6 +59,11 @@ li {
 .main-content {
 	position: relative;
 	flex-grow: 1;
+	display: flex;
+	justify-content: center;
+}
+.main-content-container {
+	margin: auto 0;
 }
 .main-content-inner {
 	margin: 40px 0;
