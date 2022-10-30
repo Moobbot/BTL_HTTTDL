@@ -66,12 +66,14 @@ $('#document').ready(function () {
 		units: 'degrees',
 		axisOrientation: 'neu',
 	});
+
 	var view = new ol.View({
 		center: ol.proj.fromLonLat([mapLng, mapLat]),
 		// zoom: mapDefaultZoom,
 		minZoom: 14,
 		projection: projection,
 	});
+
 	map = new ol.Map({
 		target: 'map',
 		layers: [layerBG, road_split, dongda_univercity, name],

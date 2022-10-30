@@ -60,16 +60,18 @@ try {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
 // Query
-$result = $myPdo->query("SELECT name, ST_AsText(p.geom) FROM dongda_univercity_point AS p JOIN dongda_univercity AS u ON u.osm_id = p.osm_id");
+$result = $myPdo->query("SELECT u.gid, u.name, ST_AsText(p.geom) FROM dongda_univercity_point AS p JOIN dongda_univercity AS u ON u.osm_id = p.osm_id");
 // Loop query
-$resFin =  '<select name="uni" id="uni">';
+$resFin =  '<option>Chọn trường</option>';
 foreach ($result as $key => $row) {
+    //id trường
+    $gid  = $row['gid'];
     //tên trường
     $name = $row['name'];
     //Tọa độ
     $coordinates = $row['st_astext'];
     $coordinates = trim($coordinates, "MULTIPOINT()");
-    $resFin = $resFin . '<option value="' . $coordinates . '">' . $name . '</option>';
+    $resFin = $resFin . '<option value = "' . $coordinates . '-' . $gid . '">' . $name . '</option>';
 }
-$resFin = $resFin . '</select>';
+$resFin = $resFin;
 echo $resFin;

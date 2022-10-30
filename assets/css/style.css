@@ -72,9 +72,12 @@ li {
 	display: flex;
 	flex-wrap: wrap;
 	align-content: space-between;
+	justify-content: center;
 }
 .option-inner {
-	margin: 10px 0;
+	margin: 10px 0 20px;
+	display: flex;
+	flex-wrap: wrap;
 }
 .user-manual {
 	background-color: antiquewhite;
@@ -82,7 +85,8 @@ li {
 }
 
 .user-manual ul {
-	padding: 0 20px;
+	padding-left: 20px;
+	padding-right: 10px;
 }
 
 .user-manual ul > li {
@@ -98,4 +102,36 @@ li {
 	font-size: 30px;
 	display: block;
 	color: var(--primary-color);
+}
+.search-map-left {
+	padding-left: 0;
+}
+.search-map-right {
+	padding-right: 0;
+}
+.search-map-right-inner {
+	padding: 8px;
+	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.search-btn button {
+	font-size: 18px;
+	margin-right: 10px;
+}
+#btnSolve {
+	border: 1px solid var(--primary-color);
+	background-color: var(--primary-color);
+	color: #fff;
+}
+#btnReset {
+	border: 1px solid var(--red);
+	background-color: var(--red);
+	color: #fff;
+}
+.option-content select {
+	margin: 0 auto;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 1.21;
+	height: 30px;
 }

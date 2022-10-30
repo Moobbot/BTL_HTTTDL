@@ -50,19 +50,33 @@
                             <div class="search-map-right col-lg-4">
                                 <div class="search-map-right-inner">
                                     <div class="option-wrap">
-                                        <div class="righ-panel">
+                                        <div class="option-content">
+                                            <div class="option-inner">
+                                                <label for="uni">Chọn trường đại học muốn đến:</label>
+                                                <select name="uni" id="uni" onchange="uniChanged(this)">
+                                                    <?php
+                                                    // connect to postgresql
+                                                    include('index_db.php');
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <script>
+                                            function uniChanged(obj) {
+                                                var value = obj.value;
+                                                if (value != '') {
+                                                    value = value.split("-");
+                                                    var toado = value[0];
+                                                    var gid = value[1];
+                                                    $("#test").text(gid);
+                                                } else $("#test").text('chưa chọn');
+                                            }
+                                            </script>
+                                        </div>
+                                        <div class="search-btn">
                                             <button id="btnSolve">Tìm đường</button>
                                             <button id="btnReset">Xóa đường</button>
                                         </div>
-                                        <div class="option-wrap">
-                                            <div class="option-inner">
-                                                <label for="uni">Chọn trường đại học muốn đến:</label>
-                                                <?php
-                                                // connect to postgresql
-                                                include('index_db.php');
-                                                ?>
-                                            </div>
-                                        </div>
+                                        <div id="test"></div>
                                     </div>
                                     <div class="user-manual">
                                         <ul>
