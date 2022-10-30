@@ -73,7 +73,7 @@ li {
 	flex-wrap: wrap;
 	align-content: space-between;
 }
-.form-group {
+.option-inner {
 	margin: 10px 0;
 }
 .user-manual {
