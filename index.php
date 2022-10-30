@@ -13,8 +13,40 @@
     <link rel="stylesheet" href="assets/css/template.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+<?php
+// PDO Options
+$options = [
+    \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION,
+    \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
+    \PDO::ATTR_EMULATE_PREPARES   => false,
+];
+$host = 'localhost';
+$db = 'dongda_univercity';
+$user = 'postgres';
+$password = '123456';
+$post = '5432';
+// Query string
+$dsn = "pgsql:host=$host;port=$post;dbname=$db;";
+try {
+    // Create pdo connection
+    $myPdo = new PDO($dsn, $user, $password);
+} catch (\PDOException $e) {
+    throw new \PDOException($e->getMessage(), (int)$e->getCode());
+}
+// Query
+$result = $myPdo->query("SELECT name, ST_AsGeoJson(p.geom)
+FROM dongda_univercity_point as p
+join dongda_univercity as u
+on u.osm_id = p.osm_id");
+print_r($result);
+// Loop query
+// foreach ($result as $key => $row) {
+//     print "{$row['name']}: {$row['gender']}<br />";
+// }
+?>
 
 <body>
+
     <header id="header" class="header">
         <div class="header-container container">
             <div class="header-inner">
@@ -90,7 +122,7 @@
                                                     </option>
 
                                                 </select>
-                                                <?php include 'CMR_pgsqlAPI.php' ?>
+
                                             </div>
                                         </div>
                                     </div>
