@@ -13,37 +13,6 @@
     <link rel="stylesheet" href="assets/css/template.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<?php
-// PDO Options
-$options = [
-    \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION,
-    \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
-    \PDO::ATTR_EMULATE_PREPARES   => false,
-];
-$host = 'localhost';
-$db = 'dongda_univercity';
-$user = 'postgres';
-$password = '123456';
-$post = '5432';
-// Query string
-$dsn = "pgsql:host=$host;port=$post;dbname=$db;";
-try {
-    // Create pdo connection
-    $myPdo = new PDO($dsn, $user, $password);
-} catch (\PDOException $e) {
-    throw new \PDOException($e->getMessage(), (int)$e->getCode());
-}
-// Query
-$result = $myPdo->query("SELECT name, ST_AsGeoJson(p.geom)
-FROM dongda_univercity_point as p
-join dongda_univercity as u
-on u.osm_id = p.osm_id");
-print_r($result);
-// Loop query
-// foreach ($result as $key => $row) {
-//     print "{$row['name']}: {$row['gender']}<br />";
-// }
-?>
 
 <body>
 
@@ -53,8 +22,7 @@ print_r($result);
                 <nav class="navbar">
                     <div class="container-fluid">
                         <div class="navbar-header">
-                            <a class="navbar-brand" href="#"><img src="assets/img/logo.png" alt=""
-                                    class="img-fluid"></a>
+                            <a class="navbar-brand" href="#"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
                         </div>
                         <ul class="nav navbar-nav">
                             <li><a href="#search-map">Tìm đường</a></li>
@@ -90,37 +58,21 @@ print_r($result);
                                             <div class="option-inner">
                                                 <label for="uni">Chọn trường đại học muốn đến:</label>
                                                 <select name="uni" id="uni">
-                                                    <option value="105.8057326 21.0232956">Trường Đại học Ngoại thương
-                                                    </option>
-                                                    <option value="105.8285333 21.0085184">Học viện Ngân Hàng</option>
-                                                    <option value="105.8318835 21.0020876">Trường Đại học Y Hà Nội
-                                                    </option>
-                                                    <option value="105.8062413 21.0225812">Học viện Ngoại giao</option>
-                                                    <option value="105.8095684 21.0226107">Học viện Thanh Thiếu Niên
-                                                        Việt Nam</option>
-                                                    <option value="105.8246023 21.0074168">Đại học Thủy Lợi</option>
-                                                    <option value="105.8254411 21.0098983">Đại học Công Đoàn</option>
-                                                    <option value="105.8026748 21.0278713">Trường Đại học Giao thông Vận
-                                                        tải</option>
-                                                    <option value="105.8319286 21.0265126">Trường Cao đẳng Y tế Hà Nội
-                                                    </option>
-                                                    <option value="105.8236938 21.023013">Trường Đại học Mỹ thuật Công
-                                                        nghiệp</option>
-                                                    <option value="105.8262804 21.0226245">Học viện Âm nhạc Quốc gia
-                                                        Việt Nam</option>
-                                                    <option value="105.8103481 21.0213527">Trường Đại học Luật Hà Nội
-                                                    </option>
-                                                    <option value="105.8227424 21.023293">Trường Đại học Văn hoá Hà Nội
-                                                    </option>
-                                                    <option value="105.8107746 21.0230226">Học viện Hành chính Quốc gia
-                                                    </option>
-                                                    <option value="105.8156106 21.0131127">Trường Cao đẳng nghề Công
-                                                        nghiệp Hà Nội</option>
-                                                    <option value="105.8074549 21.0175412">Trường Đại học Văn hóa Nghệ
-                                                        thuật Quân đội</option>
-                                                    <option value="105.8078565 21.0194347">Học viện Phụ nữ Việt Nam
-                                                    </option>
-
+                                                    <?php
+                                                    // connect to postgresql
+                                                    include('index_db.php');
+                                                    while ($row = pg_fetch_assoc($result)) {
+                                                        //tên trường
+                                                        $name = $row['name'];
+                                                        //Tọa độ
+                                                        $coordinates = $row['st_astext'];
+                                                        $coordinates = trim($coordinates, "MULTIPOINT()");
+                                                    ?>
+                                                        <option value="<?= $coordinates; ?>"><?= $name; ?>
+                                                        </option>
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </select>
 
                                             </div>
