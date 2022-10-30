@@ -1,13 +1,12 @@
 <?php
-if ($connect_check = true) {
+
+if (isset($_POST['gid'])) {
     $paPDO = initDB();
     $paSRID = '4326';
+    $gid = $_POST['gid'];
     $aResult = "null";
-
-    $aResult = getUnivercity($paPDO, $paSRID);
-
+    $aResult = getUnivercity($paPDO, $gid);
     echo $aResult;
-
     closeDB($paPDO);
 }
 
@@ -16,7 +15,7 @@ function initDB()
     $host = 'localhost';
     $db = 'btl';
     $user = 'postgres';
-    $password = '123456';
+    $password = '181311';
     $post = '5432';
     // Kết nối CSDL
 
@@ -57,39 +56,25 @@ function closeDB($paPDO)
     $paPDO = null;
 }
 
-function getResult($paPDO, $paSRID, $paPoint)
+//! Lấy thông tin trường địa học
+function getUnivercity($paPDO, $gid)
 {
-    $paPoint = str_replace(',', ' ', $paPoint);
-    $mySQLStr = "SELECT ST_AsGeoJson(geom) as geo from \"gadm41_svk_2\" where ST_Within('SRID=" . $paSRID . ";" . $paPoint . "'::geometry,geom)";
+    $mySQLStr = "SELECT * FROM dongda_univercity AS u WHERE u.gid = " . $gid . ";";
     $result = query($paPDO, $mySQLStr);
     if ($result != null) {
-        // Lặp kết quả
-        foreach ($result as $item) {
-            return $item['geo'];
+        // Kết quả
+        $resFin = '';
+        foreach ($result as $key => $row) {
+            $resFin = $row['name'] . '<br>';
+            // $resFin = $resFin . 'Thành lập: ' . $row['start_date'] . '<br>';
+            $resFin = $resFin . 'Địa chỉ: Số ' . $row['addr_house'] . ', ';
+            $resFin = $resFin . $row['addr_stree'] . ', ';
+            $resFin = $resFin . $row['addr_subdi'] . ', ';
+            $resFin = $resFin . $row['addr_distr'] . ', ';
+            $resFin = $resFin . $row['addr_city'] . '<br>';
+            $resFin = $resFin . 'Hotline: ' . $row['phone'] . '<br>';
+            $resFin = $resFin . 'Website: ' . $row['website'];
         }
-    } else
-        return "null";
-}
-//! Lấy tên và tọa độ trường địa học
-function getUnivercity($paPDO, $paSRID)
-{
-    $mySQLStr = "SELECT name, ST_AsText(p.geom) FROM dongda_univercity_point AS p JOIN dongda_univercity AS u ON u.osm_id = p.osm_id";
-    $result = query($paPDO, $mySQLStr);
-
-    if ($result != null) {
-        $resFin = '<select name="uni" id="uni">';
-        // Lặp kết quả
-        foreach ($result as $key => $item) {
-            $name = $item['name'];
-            $toado = $item['st_astext'];
-            $toado = $item['st_astext'];
-            $toado = trim($toado, "MULTIPOINT()");
-            $toado = explode(' ', $toado);
-            $resFin = $resFin . '<option value="' . $toado[0] . ' ' . $toado[1] . '">' . $item['name'] .
-                '</option>';
-            break;
-        }
-        $resFin = $resFin . '</select>';
         return $resFin;
     } else
         return "null";

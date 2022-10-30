@@ -60,13 +60,27 @@
                                                 </select>
                                             </div>
                                             <script>
+                                                var gid;
+
                                                 function uniChanged(obj) {
                                                     var value = obj.value;
                                                     if (value != '') {
                                                         value = value.split("-");
-                                                        var toado = value[0];
                                                         var gid = value[1];
-                                                        $("#test").text(gid);
+                                                        $.ajax({
+                                                            type: "POST",
+                                                            url: "pgsqlAPI.php",
+                                                            data: {
+                                                                gid: gid,
+                                                            },
+                                                            success: function(result, status, erro) {
+                                                                // alert(result);
+                                                                $('.info-school-content').html(result);
+                                                            },
+                                                            error: function(req, status, error) {
+                                                                alert(req + " " + status + " " + error);
+                                                            }
+                                                        });
                                                     } else $("#test").text('chưa chọn');
                                                 }
                                             </script>
