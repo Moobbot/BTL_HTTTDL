@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="assets/css/alter.css">
     <link rel="stylesheet" href="assets/css/template.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/javascript.js"></script>
+
 </head>
 
 <body>
@@ -61,6 +63,13 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <!-- //*! Test start-->
+                                        <div id="get_locatation">
+                                            <button onclick='locate();'>Get Location</button>
+                                            <div>Latitude: <span id="lat"></span></div>
+                                            <div>Longitude: <span id="lon"></span></div>
+                                        </div>
+                                        <!-- //*! Test end -->
 
                                         <div class="search-btn">
                                             <button id="btnSolve">Tìm đường</button>

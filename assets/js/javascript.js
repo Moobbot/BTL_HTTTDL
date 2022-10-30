@@ -1,4 +1,41 @@
 var dongda_street, result;
+
+//Tọa đọ điểm bắt đầu
+var startCoord = '';
+function locate() {
+	$.getJSON('https://ipinfo.io/', onLocationGot);
+	function onLocationGot(info) {
+		var position = info.loc.split(',');
+		startCoord = position;
+		// startCoord = position[1] + ',' + position[0];
+		// startCoord = '21.006726,105.8260878';
+		$('#lat').text(position[0]);
+		$('#lon').text(position[1]);
+	}
+}
+
+var gid;
+function uniChanged(obj) {
+	var value = obj.value;
+	if (value != '') {
+		value = value.split('-');
+		var gid = value[1];
+		$.ajax({
+			type: 'POST',
+			url: 'pgsqlAPI.php',
+			data: {
+				gid: gid,
+			},
+			success: function (result, status, erro) {
+				// alert(result);
+				$('.info-school-content').html(result);
+			},
+			error: function (req, status, error) {
+				alert(req + ' ' + status + ' ' + error);
+			},
+		});
+	} else $('#test').text('chưa chọn');
+}
 $('#document').ready(function () {
 	var format = 'image/png';
 	var map;
@@ -19,11 +56,13 @@ $('#document').ready(function () {
 	var destPoint = new ol.Feature();
 	// Vùng bao
 	var bounds = [minX, minY, maxX, maxY];
-
+	// ------------------------------------------------
+	//Bản đồ nền
 	layerBG = new ol.layer.Tile({
 		source: new ol.source.OSM({}),
 	});
 
+	//Các đường đi củas quận Đống Đa
 	dongda_street = new ol.layer.Image({
 		source: new ol.source.ImageWMS({
 			url: 'http://localhost:8080/geoserver/btl/wms',
@@ -35,7 +74,7 @@ $('#document').ready(function () {
 			},
 		}),
 	});
-
+	//Các trường đại học, cao đẳng quận Đống Đa
 	var dongda_univercity = new ol.layer.Image({
 		source: new ol.source.ImageWMS({
 			url: 'http://localhost:8080/geoserver/btl/wms',
@@ -47,7 +86,7 @@ $('#document').ready(function () {
 			},
 		}),
 	});
-
+	//Các trường đại học, cao đẳng quận Đống Đa -Tên
 	var name = new ol.layer.Image({
 		source: new ol.source.ImageWMS({
 			url: 'http://localhost:8080/geoserver/btl/wms',
@@ -60,6 +99,7 @@ $('#document').ready(function () {
 			},
 		}),
 	});
+	//Vùng bao quận Đống Đa
 	var dongda_boundary = new ol.layer.Image({
 		source: new ol.source.ImageWMS({
 			url: 'http://localhost:8080/geoserver/btl/wms',
@@ -71,12 +111,15 @@ $('#document').ready(function () {
 			},
 		}),
 	});
+
+	//
 	var projection = new ol.proj.Projection({
 		code: 'EPSG:4326',
 		units: 'degrees',
 		axisOrientation: 'neu',
 	});
 
+	//
 	var view = new ol.View({
 		center: ol.proj.fromLonLat([mapLng, mapLat]),
 		// zoom: mapDefaultZoom,
@@ -84,6 +127,7 @@ $('#document').ready(function () {
 		projection: projection,
 	});
 
+	//Map hiển thị
 	map = new ol.Map({
 		target: 'map',
 		layers: [layerBG, dongda_boundary, dongda_street, dongda_univercity, name],
@@ -111,7 +155,8 @@ $('#document').ready(function () {
 		// }
 	});
 	$('#btnSolve').click(function () {
-		var startCoord = startPoint.getGeometry().getCoordinates();
+		if (startCoord == '')
+			startCoord = startPoint.getGeometry().getCoordinates();
 		// var destCoord = destPoint.getGeometry().getCoordinates();
 		// get input val -> dest[0] & dest[1]
 		var dest = $('#uni').val().split('-')[0];
@@ -146,26 +191,3 @@ $('#document').ready(function () {
 		map.removeLayer(result);
 	});
 });
-//
-var gid;
-function uniChanged(obj) {
-	var value = obj.value;
-	if (value != '') {
-		value = value.split('-');
-		var gid = value[1];
-		$.ajax({
-			type: 'POST',
-			url: 'pgsqlAPI.php',
-			data: {
-				gid: gid,
-			},
-			success: function (result, status, erro) {
-				// alert(result);
-				$('.info-school-content').html(result);
-			},
-			error: function (req, status, error) {
-				alert(req + ' ' + status + ' ' + error);
-			},
-		});
-	} else $('#test').text('chưa chọn');
-}
