@@ -15,7 +15,7 @@ function initDB()
     $host = 'localhost';
     $db = 'btl';
     $user = 'postgres';
-    $password = '181311';
+    $password = '123456';
     $post = '5432';
     // Kết nối CSDL
 
@@ -65,15 +65,15 @@ function getUnivercity($paPDO, $gid)
         // Kết quả
         $resFin = '';
         foreach ($result as $key => $row) {
-            $resFin = $row['name'] . '<br>';
+            $resFin = '<p>' . $row['name'] . '</p>';
             // $resFin = $resFin . 'Thành lập: ' . $row['start_date'] . '<br>';
-            $resFin = $resFin . 'Địa chỉ: Số ' . $row['addr_house'] . ', ';
+            $resFin = $resFin . '<p>Địa chỉ: Số ' . $row['addr_house'] . ', ';
             $resFin = $resFin . $row['addr_stree'] . ', ';
             $resFin = $resFin . $row['addr_subdi'] . ', ';
             $resFin = $resFin . $row['addr_distr'] . ', ';
-            $resFin = $resFin . $row['addr_city'] . '<br>';
-            $resFin = $resFin . 'Hotline: ' . $row['phone'] . '<br>';
-            $resFin = $resFin . 'Website: ' . $row['website'];
+            $resFin = $resFin . $row['addr_city'] . '</p>';
+            $resFin = $resFin . '<p>Hotline: ' . $row['phone'] . '</p>';
+            $resFin = $resFin . '<p>Website: ' . $row['website'] . '</p>';
         }
         return $resFin;
     } else

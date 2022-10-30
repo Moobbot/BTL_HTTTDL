@@ -8,7 +8,7 @@ $options = [
 $host = 'localhost';
 $db = 'btl';
 $user = 'postgres';
-$password = '181311';
+$password = '123456';
 $post = '5432';
 
 // connect to a database 
