@@ -21,8 +21,7 @@
                 <nav class="navbar">
                     <div class="container-fluid">
                         <div class="navbar-header">
-                            <a class="navbar-brand" href="#"><img src="assets/img/logo.png" alt=""
-                                    class="img-fluid"></a>
+                            <a class="navbar-brand" href="#"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
                         </div>
                         <ul class="nav navbar-nav">
                             <li><a href="#search-map">Tìm đường</a></li>
@@ -61,29 +60,29 @@
                                                 </select>
                                             </div>
                                             <script>
-                                            var gid;
+                                                var gid;
 
-                                            function uniChanged(obj) {
-                                                var value = obj.value;
-                                                if (value != '') {
-                                                    value = value.split("-");
-                                                    var gid = value[1];
-                                                    $.ajax({
-                                                        type: "POST",
-                                                        url: "pgsqlAPI.php",
-                                                        data: {
-                                                            gid: gid,
-                                                        },
-                                                        success: function(result, status, erro) {
-                                                            // alert(result);
-                                                            $('.info-school-content').html(result);
-                                                        },
-                                                        error: function(req, status, error) {
-                                                            alert(req + " " + status + " " + error);
-                                                        }
-                                                    });
-                                                } else $("#test").text('chưa chọn');
-                                            }
+                                                function uniChanged(obj) {
+                                                    var value = obj.value;
+                                                    if (value != '') {
+                                                        value = value.split("-");
+                                                        var gid = value[1];
+                                                        $.ajax({
+                                                            type: "POST",
+                                                            url: "pgsqlAPI.php",
+                                                            data: {
+                                                                gid: gid,
+                                                            },
+                                                            success: function(result, status, erro) {
+                                                                // alert(result);
+                                                                $('.info-school-content').html(result);
+                                                            },
+                                                            error: function(req, status, error) {
+                                                                alert(req + " " + status + " " + error);
+                                                            }
+                                                        });
+                                                    } else $("#test").text('chưa chọn');
+                                                }
                                             </script>
                                         </div>
                                         <div class="search-btn">

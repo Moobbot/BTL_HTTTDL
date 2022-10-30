@@ -42,7 +42,7 @@ $('#document').ready(function () {
 			params: {
 				FORMAT: format,
 				VERSION: '1.1.1',
-				STYLES: 'custom_polygon',
+				STYLES: 'polygon',
 				LAYERS: 'dongda_univercity',
 			},
 		}),
@@ -104,8 +104,8 @@ $('#document').ready(function () {
 		var startCoord = startPoint.getGeometry().getCoordinates();
 		// var destCoord = destPoint.getGeometry().getCoordinates();
 		// get input val -> dest[0] & dest[1]
-		var dest = $('#uni').val().split(' ');
-		// alert(dest[0]);
+		var dest = $('#uni').val().split('-')[0];
+		var dest = dest.split(' ');
 
 		var params = {
 			LAYERS: 'route',
