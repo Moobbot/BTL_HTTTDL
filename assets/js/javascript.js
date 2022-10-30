@@ -30,7 +30,7 @@ $('#document').ready(function () {
 			params: {
 				FORMAT: format,
 				VERSION: '1.1.1',
-				STYLES: 'simple_roads',
+				STYLES: 'custom_road',
 				LAYERS: 'road_split',
 			},
 		}),
@@ -42,7 +42,7 @@ $('#document').ready(function () {
 			params: {
 				FORMAT: format,
 				VERSION: '1.1.1',
-				STYLES: 'polygon',
+				STYLES: 'custom_polygon',
 				LAYERS: 'dongda_univercity',
 			},
 		}),
@@ -60,7 +60,17 @@ $('#document').ready(function () {
 			},
 		}),
 	});
-
+	var dongda_boundary = new ol.layer.Image({
+		source: new ol.source.ImageWMS({
+			url: 'http://localhost:8080/geoserver/btl/wms',
+			params: {
+				FORMAT: format,
+				VERSION: '1.1.1',
+				STYLES: 'custom_opacity',
+				LAYERS: 'dongda_boundary',
+			},
+		}),
+	});
 	var projection = new ol.proj.Projection({
 		code: 'EPSG:4326',
 		units: 'degrees',
@@ -76,7 +86,7 @@ $('#document').ready(function () {
 
 	map = new ol.Map({
 		target: 'map',
-		layers: [layerBG, road_split, dongda_univercity, name],
+		layers: [layerBG, dongda_boundary, road_split, dongda_univercity, name],
 		view: view,
 	});
 
@@ -110,7 +120,7 @@ $('#document').ready(function () {
 		var params = {
 			LAYERS: 'route',
 			FORMAT: 'image/png',
-			STYLES: 'custom',
+			STYLES: 'custom_route',
 		};
 		var viewparams = [
 			'x1:' + startCoord[0],
