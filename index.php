@@ -21,8 +21,7 @@
                 <nav class="navbar">
                     <div class="container-fluid">
                         <div class="navbar-header">
-                            <a class="navbar-brand" href="#"><img src="assets/img/logo.png" alt=""
-                                    class="img-fluid"></a>
+                            <a class="navbar-brand" href="#"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
                         </div>
                         <ul class="nav navbar-nav">
                             <li><a href="#search-map">Tìm đường</a></li>
@@ -39,7 +38,7 @@
                 <div id="search-map">
                     <div class="search-map-container container">
                         <div class="search-map-title">
-                            <h2>Tìm kiếm</h2>
+                            <h2>Bản đồ khu vực Đống Đa</h2>
                         </div>
                         <div class="row search-map-inner">
                             <div class="search-map-left col-lg-8">

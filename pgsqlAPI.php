@@ -15,7 +15,7 @@ function initDB()
     $host = 'localhost';
     $db = 'btl';
     $user = 'postgres';
-    $password = '123456';
+    $password = '181311';
     $post = '5432';
     // Kết nối CSDL
 
