@@ -65,15 +65,15 @@ function getUnivercity($paPDO, $gid)
         // Kết quả
         $resFin = '';
         foreach ($result as $key => $row) {
-            $resFin = '<p>' . $row['name'] . '</p>';
+            $resFin = $row['name'] . '<br>';
             // $resFin = $resFin . 'Thành lập: ' . $row['start_date'] . '<br>';
-            $resFin = $resFin . '<p>Địa chỉ: Số ' . $row['addr_house'] . ', ';
+            $resFin = $resFin . 'Địa chỉ: Số ' . $row['addr_house'] . ', ';
             $resFin = $resFin . $row['addr_stree'] . ', ';
             $resFin = $resFin . $row['addr_subdi'] . ', ';
             $resFin = $resFin . $row['addr_distr'] . ', ';
-            $resFin = $resFin . $row['addr_city'] . '</p>';
-            $resFin = $resFin . '<p>Hotline: ' . $row['phone'] . '</p>';
-            $resFin = $resFin . '<p>Website: ' . $row['website'] . '</p>';
+            $resFin = $resFin . $row['addr_city'] . '<br>';
+            $resFin = $resFin . 'Hotline: ' . $row['phone'] . '<br>';
+            $resFin = $resFin . 'Website: ' . $row['website'];
         }
         return $resFin;
     } else
