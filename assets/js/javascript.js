@@ -111,13 +111,7 @@ $('#document').ready(function () {
 		if (startPoint.getGeometry() == null) {
 			// First click.
 			startPoint.setGeometry(new ol.geom.Point(evt.coordinate));
-			// $('#txtPoint1').val(evt.coordinate);
 		}
-		//  else if (destPoint.getGeometry() == null) {
-		// 	// Second click.
-		// 	destPoint.setGeometry(new ol.geom.Point(evt.coordinate));
-		// 	$('#txtPoint2').val(evt.coordinate);
-		// }
 	});
 	$('#btnSolve').click(function () {
 		var startCoord = startPoint.getGeometry().getCoordinates();

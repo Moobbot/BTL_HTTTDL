@@ -18,8 +18,6 @@ function initDB()
     $password = '123456';
     $post = '5432';
     // Kết nối CSDL
-
-    // $paPDO = new PDO('pgsql:host=localhost;dbname=KTGK_NgoDucTam;port=5432', 'postgres', 'geoserver');
     try {
         $dsn = "pgsql:host=$host;port=$post;dbname=$db;";
         $paPDO = new PDO($dsn, $user, $password);
@@ -56,7 +54,7 @@ function closeDB($paPDO)
     $paPDO = null;
 }
 
-//! Lấy thông tin trường địa học
+//! Lấy thông tin trường trong db
 function getUnivercity($paPDO, $gid)
 {
     $mySQLStr = "SELECT * FROM dongda_univercity AS u WHERE u.gid = " . $gid . ";";
