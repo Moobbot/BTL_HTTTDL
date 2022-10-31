@@ -1,4 +1,4 @@
-var road_split, result;
+var dongda_street, result;
 $('#document').ready(function () {
 	var format = 'image/png';
 	var map;
@@ -24,18 +24,20 @@ $('#document').ready(function () {
 		source: new ol.source.OSM({}),
 	});
 
-	road_split = new ol.layer.Image({
+	//Các đường đi củas quận Đống Đa
+	dongda_street = new ol.layer.Image({
 		source: new ol.source.ImageWMS({
 			url: 'http://localhost:8080/geoserver/btl/wms',
 			params: {
 				FORMAT: format,
 				VERSION: '1.1.1',
 				STYLES: 'custom_road',
-				LAYERS: 'road_split',
+				LAYERS: 'dongda_street',
 			},
 		}),
 	});
 
+	//Các trường đại học, cao đẳng quận Đống Đa
 	var dongda_univercity = new ol.layer.Image({
 		source: new ol.source.ImageWMS({
 			url: 'http://localhost:8080/geoserver/btl/wms',
@@ -48,6 +50,7 @@ $('#document').ready(function () {
 		}),
 	});
 
+	//Các trường đại học, cao đẳng quận Đống Đa -Tên
 	var name = new ol.layer.Image({
 		source: new ol.source.ImageWMS({
 			url: 'http://localhost:8080/geoserver/btl/wms',
@@ -60,6 +63,8 @@ $('#document').ready(function () {
 			},
 		}),
 	});
+
+	//Vùng bao quận Đống Đa
 	var dongda_boundary = new ol.layer.Image({
 		source: new ol.source.ImageWMS({
 			url: 'http://localhost:8080/geoserver/btl/wms',
@@ -71,12 +76,15 @@ $('#document').ready(function () {
 			},
 		}),
 	});
+
+	//
 	var projection = new ol.proj.Projection({
 		code: 'EPSG:4326',
 		units: 'degrees',
 		axisOrientation: 'neu',
 	});
 
+	//
 	var view = new ol.View({
 		center: ol.proj.fromLonLat([mapLng, mapLat]),
 		// zoom: mapDefaultZoom,
@@ -84,9 +92,10 @@ $('#document').ready(function () {
 		projection: projection,
 	});
 
+	//Map hiển thị
 	map = new ol.Map({
 		target: 'map',
-		layers: [layerBG, dongda_boundary, road_split, dongda_univercity, name],
+		layers: [layerBG, dongda_boundary, dongda_street, dongda_univercity, name],
 		view: view,
 	});
 
@@ -146,3 +155,27 @@ $('#document').ready(function () {
 		map.removeLayer(result);
 	});
 });
+
+var gid;
+
+function uniChanged(obj) {
+	var value = obj.value;
+	if (value != '') {
+		value = value.split('-');
+		var gid = value[1];
+		$.ajax({
+			type: 'POST',
+			url: 'pgsqlAPI.php',
+			data: {
+				gid: gid,
+			},
+			success: function (result, status, erro) {
+				// alert(result);
+				$('.info-school-content').html(result);
+			},
+			error: function (req, status, error) {
+				alert(req + ' ' + status + ' ' + error);
+			},
+		});
+	} else $('#test').text('chưa chọn');
+}

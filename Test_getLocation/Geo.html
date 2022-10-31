@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VNTALKING - Location Test</title>
+    <script>
+        function locate() {
+            const posStatus = document.querySelector('#posStatus');
+            const locInfo = document.querySelector('#locInfo');
+            posStatus.innerHTML = 'Đang lấy vị trí...'
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const lat = position.coords.latitude;
+                    const long = position.coords.longitude;
+                    posStatus.innerHTML = 'Vị trí của bạn là: ';      // Display Latitude and Logitude
+                    locInfo.innerHTML = `Latitude: ${lat}, Longitude: ${long}`;      // Create the link. Use map=15-19 for zooming out and in
+                    // Pass lat and long to openstreetmap
+                    locInfo.href = `https://www.openstreetmap.org/#map=19/${lat}  /${long}`;
+                });
+            }
+        }
+    </script>
+    <script src="../assets/js/jquery-3.6.1.js"></script>
+</head>
+
+<body>
+    <button onclick='locate();'>Get Location</button>
+    <!-- posStatus: Chỉ để hiển thị một thông báo cho người dùng, kiểu như: “Đang lấy vị trí…”, “Đã có lỗi.”. -->
+    <h1 id='posStatus'></h1>
+    <!-- locInfo:Để sẽ hiển thị kinh độ, vĩ độ, cũng như liên kết đến OpenStreetMap, với các tham số vĩ độ và kinh độ lấy được. -->
+    <a id='locInfo' target="#"></a>
+</body>
+<script src="../assets/js/jquery-3.6.1.js"></script>
+
+</html>
