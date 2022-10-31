@@ -1,41 +1,4 @@
 var dongda_street, result;
-
-//Tọa đọ điểm bắt đầu
-var startCoord = '';
-function locate() {
-	$.getJSON('https://ipinfo.io/', onLocationGot);
-	function onLocationGot(info) {
-		var position = info.loc.split(',');
-		startCoord = position;
-		// startCoord = position[1] + ',' + position[0];
-		// startCoord = '21.006726,105.8260878';
-		$('#lat').text(position[0]);
-		$('#lon').text(position[1]);
-	}
-}
-
-var gid;
-function uniChanged(obj) {
-	var value = obj.value;
-	if (value != '') {
-		value = value.split('-');
-		var gid = value[1];
-		$.ajax({
-			type: 'POST',
-			url: 'pgsqlAPI.php',
-			data: {
-				gid: gid,
-			},
-			success: function (result, status, erro) {
-				// alert(result);
-				$('.info-school-content').html(result);
-			},
-			error: function (req, status, error) {
-				alert(req + ' ' + status + ' ' + error);
-			},
-		});
-	} else $('#test').text('chưa chọn');
-}
 $('#document').ready(function () {
 	var format = 'image/png';
 	var map;
@@ -191,3 +154,26 @@ $('#document').ready(function () {
 		map.removeLayer(result);
 	});
 });
+//
+var gid;
+function uniChanged(obj) {
+	var value = obj.value;
+	if (value != '') {
+		value = value.split('-');
+		var gid = value[1];
+		$.ajax({
+			type: 'POST',
+			url: 'pgsqlAPI.php',
+			data: {
+				gid: gid,
+			},
+			success: function (result, status, erro) {
+				// alert(result);
+				$('.info-school-content').html(result);
+			},
+			error: function (req, status, error) {
+				alert(req + ' ' + status + ' ' + error);
+			},
+		});
+	} else $('#test').text('chưa chọn');
+}

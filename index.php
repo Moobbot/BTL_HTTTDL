@@ -63,28 +63,29 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <!-- //*! Test start-->
-                                        <div id="get_locatation">
-                                            <button onclick='locate();'>Get Location</button>
-                                            <div>Latitude: <span id="lat"></span></div>
-                                            <div>Longitude: <span id="lon"></span></div>
-                                        </div>
-                                        <!-- //*! Test end -->
+                                        <<<<<<< HEAD=======<!-- //*! Test start-->
+                                            <div id="get_locatation">
+                                                <button onclick='locate();'>Get Location</button>
+                                                <div>Latitude: <span id="lat"></span></div>
+                                                <div>Longitude: <span id="lon"></span></div>
+                                            </div>
+                                            <!-- //*! Test end -->
+                                            >>>>>>> 3efb4918e54bdf6dd96f1ab2d48104ef88675ec4
 
-                                        <div class="search-btn">
-                                            <button id="btnSolve">Tìm đường</button>
-                                            <button id="btnReset">Xóa đường</button>
-                                        </div>
-                                        <div id="info-school">
-                                            <div class="info-school-inner">
-                                                <div class="info-school-title">
-                                                    <h2>Thông tin</h2>
-                                                </div>
-                                                <div class="info-school-content">
-                                                    <span>Thông tin trường Đại Học được chọn xuất hiện ở đây.</span>
+                                            <div class="search-btn">
+                                                <button id="btnSolve">Tìm đường</button>
+                                                <button id="btnReset">Xóa đường</button>
+                                            </div>
+                                            <div id="info-school">
+                                                <div class="info-school-inner">
+                                                    <div class="info-school-title">
+                                                        <h2>Thông tin</h2>
+                                                    </div>
+                                                    <div class="info-school-content">
+                                                        <span>Thông tin trường Đại Học được chọn xuất hiện ở đây.</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
                                     </div>
                                     <div class="user-manual">
                                         <ul>
