@@ -9,7 +9,7 @@ select * from dongda_street;
 -- Tạo topology cho dongda_street
 select pgr_createTopology('public.dongda_street', 0.0001, 'geom', 'gid');
 
--- Tìm đường đi ngắn nhất pgr_dijkstra(sql, source, target, directed)
+-- Tìm đường đi ngắn nhất pgr_dijkstra(sql, Dsource, target, directed)
 --seq - số bước
 --edge - 
 SELECT seq, id1 AS node, id2 AS edge, cost, geom

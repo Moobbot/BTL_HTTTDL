@@ -61,7 +61,7 @@ try {
 // Query
 $result = $myPdo->query("SELECT u.gid, u.name, ST_AsText(p.geom) FROM dongda_univercity_point AS p JOIN dongda_univercity AS u ON u.osm_id = p.osm_id");
 // Loop query
-$resFin =  '<option>Chọn trường</option>';
+$resFin =  '<option style ="display: none;">Chọn trường</option>';
 foreach ($result as $key => $row) {
     //id trường
     $gid  = $row['gid'];

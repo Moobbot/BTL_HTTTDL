@@ -24,7 +24,7 @@ $('#document').ready(function () {
 		source: new ol.source.OSM({}),
 	});
 
-	//Các đường đi củas quận Đống Đa
+	//Các đường đi của quận Đống Đa
 	dongda_street = new ol.layer.Image({
 		source: new ol.source.ImageWMS({
 			url: 'http://localhost:8080/geoserver/btl/wms',

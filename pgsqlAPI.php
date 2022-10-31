@@ -71,7 +71,7 @@ function getUnivercity($paPDO, $gid)
             $resFin = $resFin . $row['addr_distr'] . ', ';
             $resFin = $resFin . $row['addr_city'] . '<br>';
             $resFin = $resFin . 'Hotline: ' . $row['phone'] . '<br>';
-            $resFin = $resFin . 'Website: ' . $row['website'];
+            $resFin = $resFin . 'Website: <a href="' . $row['website'] . '">' . $row['website'] . '</a>';
         }
         return $resFin;
     } else

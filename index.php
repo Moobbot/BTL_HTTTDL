@@ -39,7 +39,7 @@
                 <div id="search-map">
                     <div class="search-map-container container">
                         <div class="search-map-title">
-                            <h2>Tìm kiếm</h2>
+                            <h2>Bản đồ khu vực Đống Đa</h2>
                         </div>
                         <div class="row search-map-inner">
                             <div class="search-map-left col-lg-8">
